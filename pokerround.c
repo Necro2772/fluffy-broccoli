@@ -1,33 +1,57 @@
 #include <stdio.h>
-//hdjshajdhsadas
+#include <ctype.h>
+
 void main(int a, char *input[]){
   FILE *fp;
   int deck[52];
+  int player[52];
+  int dealer[52];
   int value;
   int num = 0;
   int i = 0;
 
   fp = fopen ("./cards.txt", "rb");
-  if (fp) {
+  if(fp){
     while(1){
       value = fgetc (fp);
       if (isdigit(value)) {
-        printf("%d", value);
+        value -= 48;
         num = num * 10;
-        num += value;
+        num += (int)value;
       }
       if (value == ',') {
       deck[i] = num;
       i++;
+      num = 0;
       }
       if (value == ']') break;
     }
     while(1){
       value = fgetc (fp);
+      if (isdigit(value)) {
+        value -= 48;
+        num = num * 10;
+        num += (int)value;
+      }   
+      if (value == ',') {
+      player[i] = num;
+      i++;
+      num = 0;
+      }
       if (value == ']') break;
     }
     while(1){
       value = fgetc (fp);
+      if (isdigit(value)) {
+        value -= 48;
+        num = num * 10;
+        num += (int)value;
+      }   
+      if (value == ',') {
+      dealer[i] = num;
+      i++;
+      num = 0;
+      }
       if (value == ']') break;
     }
     fclose (fp);
