@@ -1,5 +1,16 @@
 #include <stdio.h>
-//hdjshajdhsadas
+#include <stdlib.h>
+
+
+void shuffle(int *cards[]){
+  for (int i = 0; i < 52; i++){
+    *cards[i] = rand() % 52;
+    printf("%d\n", *cards[i]);
+  }
+
+}
+
+
 void main(int a, char *input[]){
   FILE *fp;
   int deck[52];
@@ -10,10 +21,10 @@ void main(int a, char *input[]){
   if (fp) {
     while(1){
       value = fgetc (fp);
-      if (isdigit(value)) {
-        printf("%d", value);
-        deck[i] = value;
-      }
+//      if (isdigit(value)) {
+//        printf("%d", value);
+//        deck[i] = value;
+//      }
       i++;
       if (value == ']') break;
     }
@@ -30,4 +41,9 @@ void main(int a, char *input[]){
   }
 
 
+
+
+    if (&deck[1] == NULL){
+      shuffle(deck);
+    }
 }
