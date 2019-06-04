@@ -1,5 +1,15 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
+
+
+void shuffle(int *cards[]){
+  for (int i = 0; i < 52; i++){
+    *cards[i] = rand() % 52;
+    printf("%d\n", *cards[i]);
+  }
+
+}
 
 void main(int a, char *input[]){
   FILE *fp;
@@ -32,7 +42,7 @@ void main(int a, char *input[]){
         value -= 48;
         num = num * 10;
         num += (int)value;
-      }   
+      }
       if (value == ',') {
       player[i] = num;
       i++;
@@ -46,7 +56,7 @@ void main(int a, char *input[]){
         value -= 48;
         num = num * 10;
         num += (int)value;
-      }   
+      }
       if (value == ',') {
       dealer[i] = num;
       i++;
@@ -59,4 +69,9 @@ void main(int a, char *input[]){
   }
 
 
+
+
+  if (&deck[1] == NULL){
+    shuffle(deck);
+  }
 }
