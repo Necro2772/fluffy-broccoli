@@ -28,6 +28,16 @@ void shuffle(int* cards){
   }
 }
 
+void draw(int* top, int* deck, int* draw){
+  for (int i = 0; i<52; i++){
+    if (draw[i] == -1){
+      draw[i] = deck[*top];
+      break;
+    }
+  }
+  *top -= 1;
+}
+
 void main(int b, char *input[]){
   FILE *fp;
   int deck[52];
@@ -36,6 +46,7 @@ void main(int b, char *input[]){
   int value;
   int num = 0;
   int a = 0;
+  int top;
 
   fp = fopen ("./cards.txt", "rb");
   if(fp){
@@ -66,6 +77,11 @@ void main(int b, char *input[]){
       a++;
       num = 0;
       }
+      if (value == ']' && a == 0){
+        for (int i = 0; i<52; i++){
+          player[i] = -1;
+        }
+      }
       if (value == ']') break;
     }
     a = 0;
@@ -81,18 +97,49 @@ void main(int b, char *input[]){
       a++;
       num = 0;
       }
+      if (value == ']' && a == 0){
+        for (int i = 0; i<52; i++){
+          dealer[i] = -1;
+        }
+      }
       if (value == ']') break;
     }
     fclose (fp);
-
   }
-
-
-
 
   if (!(isdigit(player[1]))){
     shuffle(deck);
+    top = 51;
   }
-  draw(2,player[52]);
-  draw(2,dealer[52]);
+
+ /* switch (*input[1]){
+    case 'r':
+      draw(&top, deck, player);
+      draw(&top, deck, player);
+      draw(&top, deck, dealer);
+      draw(&top, deck, dealer);
+      break;
+    case 'd':
+      draw(&top, deck, player);
+      check score
+      if (score greater thn 21)
+      Player loses
+      printf "wow trash"
+      break;
+    case 's':
+      if (dealer score below 16);
+      draw(&top, deck, dealer);
+      if dealer score above 21
+      player wins
+      else compare scores
+      if (playerScore higher or equal to dealerScore);
+      Player wins
+      printf("good job")
+      else (Dealer score higher)
+      Player loses
+      printf("you suck")
+      break;
+    default:
+      break;
+ */ }
 }
