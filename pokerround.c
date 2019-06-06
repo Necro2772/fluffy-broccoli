@@ -28,6 +28,16 @@ void shuffle(int* cards){
   }
 }
 
+void draw(int* top, int* deck, int* draw){
+  for (int i = 0; i<52; i++){
+    if (draw[i] == -1){
+      draw[i] = deck[*top];
+      break;
+    }
+  }
+  *top -= 1;
+}
+
 void main(int b, char *input[]){
   FILE *fp;
   int deck[52];
@@ -36,6 +46,7 @@ void main(int b, char *input[]){
   int value;
   int num = 0;
   int a = 0;
+  int top;
 
   fp = fopen ("./cards.txt", "rb");
   if(fp){
@@ -66,6 +77,11 @@ void main(int b, char *input[]){
       a++;
       num = 0;
       }
+      if (value == ']' && a == 0){
+        for (int i = 0; i<52; i++){
+          player[i] = -1;
+        }
+      }
       if (value == ']') break;
     }
     a = 0;
@@ -81,17 +97,19 @@ void main(int b, char *input[]){
       a++;
       num = 0;
       }
+      if (value == ']' && a == 0){
+        for (int i = 0; i<52; i++){
+          dealer[i] = -1;
+        }
+      }
       if (value == ']') break;
     }
     fclose (fp);
-
   }
-
-
-
 
   if (!(isdigit(player[1]))){
     shuffle(deck);
+    top = 51;
   }
-  printf("%d\n", sizeof(deck));
+  draw(&top, deck, player);
 }
