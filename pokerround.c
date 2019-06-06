@@ -93,5 +93,6 @@ void main(int b, char *input[]){
   if (!(isdigit(player[1]))){
     shuffle(deck);
   }
-  printf("%d\n", sizeof(deck));
+  draw(2,player[52]);
+  draw(2,dealer[52]);
 }
