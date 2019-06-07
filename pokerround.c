@@ -1,44 +1,10 @@
 #include <stdio.h>
+#include "pokerfunctions.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <time.h>
 
-void shuffle(int* cards){
-  srand(time(0));
-  int repeat = 0;
-  for (int i = 0; i < 52; i++){
-    cards[i] = rand() % 52;
-    while(1){
-      repeat = 0;
-      for(int a = 0; a < i; a++){
-        if(cards[i] == cards[a]){
-          repeat = 1;
-        }
-      }
-      if(repeat == 1){
-        cards[i] = rand() % 52;
-      }else{
-        break;
-      }
-    }
-  }
-
-  for(int i = 0; i < 52; i++){
-  printf("%d\n", cards[i]);
-  }
-}
-
-void draw(int* top, int* deck, int* draw){
-  for (int i = 0; i<52; i++){
-    if (draw[i] == -1){
-      draw[i] = deck[*top];
-      break;
-    }
-  }
-  *top -= 1;
-}
-
-void main(int b, char *input[]){
+int main(int b, char *input[]){
   FILE *fp;
   int deck[52];
   int player[52];
@@ -141,5 +107,5 @@ void main(int b, char *input[]){
       break;
     default:
       break;
- */ }
+  }*/
 }
