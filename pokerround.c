@@ -39,9 +39,14 @@ int main(int b, char *input[]){
         num += (int)value;
       }
       if (value == ',') {
-      player[a] = num;
-      a++;
-      num = 0;
+        player[a] = num;
+        a++;
+        num = 0;
+      }
+      if (value == '-'){
+        player[a] = -1;
+        a++;
+        num = 0;
       }
       if (value == ']' && a == 0){
         for (int i = 0; i<52; i++){
@@ -63,6 +68,11 @@ int main(int b, char *input[]){
       a++;
       num = 0;
       }
+      if (value == '-'){
+        dealer[a] = -1;
+        a++;
+        num = 0;
+      }
       if (value == ']' && a == 0){
         for (int i = 0; i<52; i++){
           dealer[i] = -1;
@@ -78,7 +88,7 @@ int main(int b, char *input[]){
     top = 51;
   }
 
- /* switch (*input[1]){
+  switch (*input[1]){
     case 'r':
       draw(&top, deck, player);
       draw(&top, deck, player);
@@ -87,27 +97,27 @@ int main(int b, char *input[]){
       break;
     case 'd':
       draw(&top, deck, player);
-      check score
-      if (score greater thn 21)
-      Player loses
-      printf "wow trash"
+      if (score(player) > 21){
+        printf("Your hand is over 21, you lose!\n");
+      }
       break;
     case 's':
-      if (dealer score below 16);
-      draw(&top, deck, dealer);
-      if dealer score above 21
-      player wins
-      else compare scores
-      if (playerScore higher or equal to dealerScore);
-      Player wins
-      printf("good job")
-      else (Dealer score higher)
-      Player loses
-      printf("you suck")
+      while (score(dealer) < 16){
+        draw(&top, deck, dealer);
+      }
+      if (score(dealer) > 21){
+        printf("Dealer busts, player wins!\n");
+      }
+      else if (score(player) >= score(dealer)){
+        printf("Player wins!\n");
+      }
+      else{
+        printf("Dealer wins!\n");
+      }
       break;
     default:
       break;
-  }*/
+  }
 
   fp = fopen ("./cards.txt", "wb");
   
@@ -122,7 +132,7 @@ int main(int b, char *input[]){
       fprintf(fp, "%d,", player[i]);
     }
     fprintf(fp, "]\n");
-    fprintf(fp, "player[");
+    fprintf(fp, "dealer[");
     for(int i = 0; i < (51 - top); i++){
       fprintf(fp, "%d,", dealer[i]);
     }
