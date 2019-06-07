@@ -108,4 +108,25 @@ int main(int b, char *input[]){
     default:
       break;
   }*/
+
+  fp = fopen ("./cards.txt", "wb");
+  
+  if(fp){
+    fprintf(fp, "deck[");
+    for(int i = 0; i < 52; i++){
+      fprintf(fp, "%d,", deck[i]);
+    }
+    fprintf(fp, "]\n");
+    fprintf(fp, "player[");
+    for(int i = 0; i < (51 - top); i++){
+      fprintf(fp, "%d,", player[i]);
+    }
+    fprintf(fp, "]\n");
+    fprintf(fp, "player[");
+    for(int i = 0; i < (51 - top); i++){
+      fprintf(fp, "%d,", dealer[i]);
+    }
+    fprintf(fp, "]\n");
+  }
+  fclose(fp);
 }
