@@ -14,7 +14,7 @@ int main(int b, char *input[]){
   int a = 0;
   int top;
 
-  fp = fopen ("./cards", "rb");
+  fp = fopen ("./cards.txt", "rb");
   if(fp){
     while(1){
       value = fgetc (fp);
@@ -129,7 +129,7 @@ int main(int b, char *input[]){
       break;
   }
 
-  fp = fopen ("cards", "wb");
+  fp = fopen ("./cards.txt", "wb");
   if(fp){
     fprintf(fp, "deck[");
     for(int i = 0; i < 52; i++){
