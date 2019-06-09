@@ -137,10 +137,6 @@ void shuffle(int* cards){
       }
     }
   }
-
-  for(int i = 0; i < 52; i++){
-  printf("%d\n", cards[i]);
-  }
 }
 
 void draw(int* top, int* deck, int* draw){
