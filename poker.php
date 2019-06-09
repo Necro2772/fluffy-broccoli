@@ -11,10 +11,61 @@
     <p>Input Reset, Draw, or Stay</p>
     
     <?php
-      
-      
-      
-      
+        $a = $num = 0;
+        $fp = fopen ("./cards.txt", "r");
+          while(1){
+            $value = fgetc ($fp);
+            if($value == ']') break;
+          }
+          while(1){
+            $value = fgetc ($fp);
+            if ($value == '-'){
+              $num = -1;
+            }
+            if (isdigit($value) && $num != -1) {
+              $value -= 48;
+              $num = $num * 10;
+              $num += (int)$value;
+            }
+            if ($value == ',') {
+              //$player[$a] = $num;
+              exec("./getcard " . $num . $output, $retc);
+              echo "<img src=\"" . $output . "\" alt=\"card\">";
+              
+              
+              $a++;
+              $num = 0;
+            }
+            if ($value == ']' && $a == 0){
+              for ($i = 0; $i<52; $i++){
+                $player[$i] = -1;
+              }
+            }
+            if ($value == ']') break;
+          }
+          $a = 0;
+          while(1){
+            $value = fgetc ($fp);
+            if ($value == '-'){
+              $num = -1;
+            }
+            if (isdigit($value) && $num != -1) {
+              $value -= 48;
+              $num = $num * 10;
+              $num += (int)$value;
+            }
+            if ($value == ',') {
+              //$dealer[$a] = $num;
+              exec("./getcard " . $num . $output, $retc);
+              echo "<img src=\"" . $output . "\" alt=\"card\">";
+              
+              
+              $a++;
+              $num = 0;
+            }
+            if ($value == ']') break;
+          }
+          fclose ($fp);
     ?>
     
     <?php
