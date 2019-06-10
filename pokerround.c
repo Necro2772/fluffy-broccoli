@@ -90,39 +90,39 @@ int main(int b, char *input[]){
     }
     fclose (fp);
   }
-  switch (*input[2]){
+
+  switch ((int)*input[1]){
     case 'r':
+      printf("Reset\n");
       shuffle(deck, player, dealer);
       top = 51;
       draw(&top, deck, player);
       draw(&top, deck, player);
       draw(&top, deck, dealer);
       draw(&top, deck, dealer);
-      break;
-    case 'd':
-      draw(&top, deck, player);
       printf("Player: %d\n", score(player));
+      printf("Dealer: %d\n", score(dealer));
+      break;
+    case (int)'d':
+      draw(&top, deck, player);
+      printf("Player: %d\nDealer: %d\n", score(player), score(dealer));
       if (score(player) > 21){
         printf("Your hand is over 21, you lose!\n");
-        return 3;
       }
       break;
-    case 's':
+    case (int)'s':
       while (score(dealer) < 16){
         draw(&top, deck, dealer);
       }
-      printf("Player: %d, Dealer: %d\n", score(player), score(dealer));
+      printf("Player: %d\nDealer: %d\n", score(player), score(dealer));
       if (score(dealer) > 21){
         printf("Dealer busts, player wins!\n");
-        return 2;
       }
       else if (score(player) >= score(dealer)){
         printf("Player wins!\n");
-        return 2
       }
       else{
         printf("Dealer wins!\n");
-        return 3
       }
       break;
     default:

@@ -118,11 +118,13 @@ int score(int* hand){
   return points;
 }
 
-void shuffle(int* cards){
+void shuffle(int* cards, int* player, int* dealer){
   srand(time(0));
   int repeat = 0;
   for (int i = 0; i < 52; i++){
     cards[i] = rand() % 52;
+    player[i] = -1;
+    dealer[i] = -1;
     while(1){
       repeat = 0;
       for(int a = 0; a < i; a++){
